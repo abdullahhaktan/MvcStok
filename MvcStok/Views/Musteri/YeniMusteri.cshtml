@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "YeniMusteri";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1>Müşteri Ekle</h1>
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Müşteri Ekleme</h5>
+        </div>
+        <div class="card-body">
+            <form action="/Musteri/YeniMusteri" method="post">
+                <div class="mb-3">
+
+                    <label for="musteriAd" class="form-label">Müşteri Ad</label>
+                    <input type="text" class="form-control" id="musteriAd" name="MUSTERIAD" placeholder="Müşteri Ad">
+
+                    <label for="musteriSoyad" class="form-label">Müşteri Soyad</label>
+                    <input type="text" class="form-control" id="musteriSoyad" name="MUSTERISOYAD" placeholder="Müşteri Soyad">
+
+                </div>
+                <button type="submit" class="btn btn-dark btn-sm">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>

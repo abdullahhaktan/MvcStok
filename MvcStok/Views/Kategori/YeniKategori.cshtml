@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "YeniKategori";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1>Yeni Kategori Girişi</h1>
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Yeni Kategori Ekle</h5>
+        </div>
+        <div class="card-body">
+            <form action="/Kategori/YeniKategori" method="post">
+                <div class="mb-3">
+                    <label for="kategoriAd" class="form-label">Kategori</label>
+                    <input type="text" class="form-control" id="kategoriAd" name="KATEGORIAD" placeholder="kategori girin">
+                </div>
+                <button type="submit" class="btn btn-dark btn-sm">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>

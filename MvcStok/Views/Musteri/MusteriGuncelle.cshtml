@@ -1,0 +1,33 @@
+﻿@using MvcStok.Models.Entity
+@model Tblmusteriler
+
+@{
+    ViewData["Title"] = "MusteriGuncelle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1>Müşteri Güncelle</h1>
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Müşteri Güncelle</h5>
+        </div>
+        <div class="card-body">
+            <form action="/Musteri/MusteriGuncelle" method="post">
+                <div class="mb-3">
+                    <input type="hidden" name="MUSTERIID" value="@Model.Musteriid" />
+
+                    <label for="musteriAd" class="form-label">Müşteri Ad</label>
+                    <input type="text" class="form-control" id="musteriAd" name="MUSTERIAD" placeholder="Müşteri ad" value="@Model.Musteriad">
+
+                    <label for="musteriSoyad" class="form-label">Müşteri Soyad</label>
+                    <input type="text" class="form-control" id="musteriSoyad" name="MUSTERISOYAD" placeholder="Müşteri soyad" value="@Model.Musterisoyad">
+
+                </div>
+                <button type="submit" class="btn btn-dark btn-sm">Kaydet</button>
+            </form>
+        </div>
+
+    </div>
+</div>

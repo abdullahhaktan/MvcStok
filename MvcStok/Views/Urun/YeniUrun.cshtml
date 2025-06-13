@@ -1,0 +1,42 @@
+﻿@using MvcStok.Models.Entity
+@model List<Tblurunler>
+
+@{
+    ViewData["Title"] = "YeniÜrün";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Yeni Ürün</h5>
+        </div>
+        <div class="card-body">
+            <form action="/Urun/YeniUrun" method="post">
+                <div class="mb-3">
+                    <label for="urunAd" class="form-label">Ürün Adı</label>
+                    <input type="text" class="form-control" id="urunAd" name="URUNAD" placeholder="Ürün adını girin">
+                </div>
+                <div class="mb-3">
+                    <label for="marka" class="form-label">Marka</label>
+                    <input type="text" class="form-control" id="marka" name="MARKA" placeholder="Markayı girin">
+                </div>
+                <div class="mb-3">
+                    <label for="kategori" class="form-label">Kategori</label>
+                    <input type="text" class="form-control" id="kategori" name="URUNKATEGORI" placeholder="Kategori girin">
+                </div>
+                <div class="mb-3">
+                    <label for="stok" class="form-label">Fiyat</label>
+                    <input type="text" class="form-control" id="fiyat" name="FİYAT" placeholder="fiyat girin">
+                </div>
+                <div class="mb-3">
+                    <label for="stok" class="form-label">Stok</label>
+                    <input type="text" class="form-control" id="stok" name="STOK" placeholder="Stok girin">
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

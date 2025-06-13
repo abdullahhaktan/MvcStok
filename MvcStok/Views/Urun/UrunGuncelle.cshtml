@@ -1,0 +1,47 @@
+﻿@using MvcStok.Models.Entity;
+@model Tblurunler
+
+@{
+    ViewData["Title"] = "UrunGuncelle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1>Ürün Güncelle</h1>
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Ürün Güncelle</h5>
+        </div>
+        <div class="card-body">
+            <form action="/Urun/UrunGuncelle" method="post">
+
+                <input type="hidden" name="Urunid" value="@Model.Urunid" />
+
+                <div class="mb-3">
+                    <label for="urunAd" class="form-label">Ürün Adı</label>
+                    <input type="text" class="form-control" id="urunAd" name="Urunad" placeholder="Ürün adını girin" value="@Model.Urunad">
+                </div>
+                <div class="mb-3">
+                    <label for="marka" class="form-label">Marka</label>
+                    <input type="text" class="form-control" id="marka" name="MARKA" placeholder="Markayı girin" value="@Model.Marka">
+                </div>
+                <div class="mb-3">
+                    <label for="kategori" class="form-label">Kategori</label>
+                    <input type="text" class="form-control" id="kategori" name="URUNKATEGORI" placeholder="Kategori girin" value="@Model.Urunkategori">
+                </div>
+                <div class="mb-3">
+                    <label for="stok" class="form-label">Fiyat</label>
+                    <input type="text" class="form-control" id="fiyat" name="FİYAT" placeholder="fiyat girin" value="@Model.Fİyat">
+                </div>
+                <div class="mb-3">
+                    <label for="stok" class="form-label">Stok</label>
+                    <input type="text" class="form-control" id="stok" name="STOK" placeholder="Stok girin" value="@Model.Stok">
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
