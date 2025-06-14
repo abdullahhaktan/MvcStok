@@ -20,13 +20,13 @@
         @foreach (var ktgr in Model)
         {
             <tr>
-                <th>@ktgr.Kategotriid</th>
-                <td>@ktgr.Kategoriad</td>
+                <th>@ktgr.KATEGORIID</th>
+                <td>@ktgr.KATEGORIAD</td>
                 <td>
-                    <a href="/Kategori/KategoriSil/@ktgr.Kategotriid" class="btn btn-danger btn-sm">Sil</a>
+                    <a href="/Kategori/KategoriSil/@ktgr.KATEGORIID" class="btn btn-danger btn-sm">Sil</a>
                 </td>
                 <td>
-                    <a href="/Kategori/KategoriGuncelle/@ktgr.Kategotriid" class="btn btn-primary btn-sm">Güncelle</a>
+                    <a href="/Kategori/KategoriGuncelle/@ktgr.KATEGORIID" class="btn btn-primary btn-sm">Güncelle</a>
                 </td>
             </tr>
         }
@@ -36,6 +36,5 @@
 
 <a href="/Kategori/YeniKategori" class="btn btn-dark btn-sm">Yeni Kategori Girişi</a>
 
-<br />
 <br />
 <br />

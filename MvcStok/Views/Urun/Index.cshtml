@@ -1,6 +1,5 @@
 ﻿@using MvcStok.Models.Entity
 @model List<Tblurunler>
-
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -13,6 +12,7 @@
             <th>ÜRÜN ADI</th>
             <th>Marka</th>
             <th>Fiyat</th>
+            <th>Kategori</th>
             <th>Stok</th>
             <th>Sil</th>
             <th>Güncelle</th>
@@ -23,16 +23,17 @@
         @foreach (var prdct in Model)
         {
             <tr>
-                <th>@prdct.Urunid</th>
-                <td>@prdct.Urunad</td>
-                <td>@prdct.Marka</td>
-                <td>@prdct.Fİyat</td>
-                <td>@prdct.Stok</td>
+                <th>@prdct.URUNID</th>
+                <td>@prdct.URUNAD</td>
+                <td>@prdct.MARKA</td>
+                <td>@prdct.FIYAT</td>
+                <td>@(!string.IsNullOrWhiteSpace(prdct.UrunkategoriNavigation?.KATEGORIAD) ? prdct.UrunkategoriNavigation.KATEGORIAD : "Kategori yok")</td>
+                <td>@prdct.STOK</td>
                 <td>
-                    <a href="/Urun/UrunSil/@prdct.Urunid" class="btn btn-danger btn-sm">Sil</a>
+                    <a href="/Urun/UrunSil/@prdct.URUNID" class="btn btn-danger btn-sm">Sil</a>
                 </td>
                 <td>
-                    <a href="/Urun/UrunGuncelle/@prdct.Urunid" class="btn btn-primary btn-sm">Güncelle</a>
+                    <a href="/Urun/UrunGuncelle/@prdct.URUNID" class="btn btn-primary btn-sm">Güncelle</a>
                 </td>
             </tr>
         }

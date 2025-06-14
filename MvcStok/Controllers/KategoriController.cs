@@ -27,11 +27,17 @@ namespace MvcStok.Controllers
         [HttpPost]
         public IActionResult YeniKategori(Tblkategoriler ktgr)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(ktgr); // Validation başarısızsa formu tekrar göster
+            }
+
             ktgr.KATEGORIDURUM = true;
             _mvcDbStokContext.Tblkategorilers.Add(ktgr);
             _mvcDbStokContext.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         public IActionResult KategoriSil(short id)
         {
@@ -52,9 +58,14 @@ namespace MvcStok.Controllers
         [HttpPost]
         public IActionResult KategoriGuncelle(Tblkategoriler ktgr)
         {
-            var ctgr = _mvcDbStokContext.Tblkategorilers.Find(ktgr.Kategotriid);
+            if (!ModelState.IsValid)
+            {
+                return View(ktgr); // Validation başarısızsa formu tekrar göster
+            }
 
-            ctgr.Kategoriad = ktgr.Kategoriad;
+            var ctgr = _mvcDbStokContext.Tblkategorilers.Find(ktgr.KATEGORIID);
+
+            ctgr.KATEGORIAD = ktgr.KATEGORIAD;
 
             _mvcDbStokContext.Tblkategorilers.Update(ctgr);
 

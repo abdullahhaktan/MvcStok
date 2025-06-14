@@ -31,12 +31,12 @@ public partial class MvcDbStokContext : DbContext
     {
         modelBuilder.Entity<Tblkategoriler>(entity =>
         {
-            entity.HasKey(e => e.Kategotriid);
+            entity.HasKey(e => e.KATEGORIID);
 
             entity.ToTable("TBLKATEGORILER");
 
-            entity.Property(e => e.Kategotriid).HasColumnName("KATEGOTRIID");
-            entity.Property(e => e.Kategoriad)
+            entity.Property(e => e.KATEGORIID).HasColumnName("KATEGORIID");
+            entity.Property(e => e.KATEGORIAD)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("KATEGORIAD");
@@ -44,16 +44,16 @@ public partial class MvcDbStokContext : DbContext
 
         modelBuilder.Entity<Tblmusteriler>(entity =>
         {
-            entity.HasKey(e => e.Musteriid);
+            entity.HasKey(e => e.MUSTERIID);
 
             entity.ToTable("TBLMUSTERILER");
 
-            entity.Property(e => e.Musteriid).HasColumnName("MUSTERIID");
-            entity.Property(e => e.Musteriad)
+            entity.Property(e => e.MUSTERIID).HasColumnName("MUSTERIID");
+            entity.Property(e => e.MUSTERIAD)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("MUSTERIAD");
-            entity.Property(e => e.Musterisoyad)
+            entity.Property(e => e.MUSTERISOYAD)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("MUSTERISOYAD");
@@ -61,50 +61,50 @@ public partial class MvcDbStokContext : DbContext
 
         modelBuilder.Entity<Tblsatislar>(entity =>
         {
-            entity.HasKey(e => e.Satisid);
+            entity.HasKey(e => e.SATISID);
 
             entity.ToTable("TBLSATISLAR");
 
-            entity.Property(e => e.Satisid).HasColumnName("SATISID");
-            entity.Property(e => e.Adet).HasColumnName("ADET");
-            entity.Property(e => e.Fiyat)
+            entity.Property(e => e.SATISID).HasColumnName("SATISID");
+            entity.Property(e => e.ADET).HasColumnName("ADET");
+            entity.Property(e => e.FIYAT)
                 .HasColumnType("decimal(18, 2)")
                 .HasColumnName("FIYAT");
-            entity.Property(e => e.Musteri).HasColumnName("MUSTERI");
-            entity.Property(e => e.Urun).HasColumnName("URUN");
+            entity.Property(e => e.MUSTERI).HasColumnName("MUSTERI");
+            entity.Property(e => e.URUN).HasColumnName("URUN");
 
             entity.HasOne(d => d.MusteriNavigation).WithMany(p => p.Tblsatislars)
-                .HasForeignKey(d => d.Musteri)
+                .HasForeignKey(d => d.MUSTERI)
                 .HasConstraintName("FK_TBLSATISLAR_TBLMUSTERILER");
 
             entity.HasOne(d => d.UrunNavigation).WithMany(p => p.Tblsatislars)
-                .HasForeignKey(d => d.Urun)
+                .HasForeignKey(d => d.URUN)
                 .HasConstraintName("FK_TBLSATISLAR_TBL_URUNLER");
         });
 
         modelBuilder.Entity<Tblurunler>(entity =>
         {
-            entity.HasKey(e => e.Urunid).HasName("PK_TBL_URUNLER");
+            entity.HasKey(e => e.URUNID).HasName("PK_TBL_URUNLER");
 
             entity.ToTable("TBLURUNLER");
 
-            entity.Property(e => e.Urunid).HasColumnName("URUNID");
-            entity.Property(e => e.Fİyat)
+            entity.Property(e => e.URUNID).HasColumnName("URUNID");
+            entity.Property(e => e.FIYAT)
                 .HasColumnType("decimal(18, 2)")
                 .HasColumnName("FİYAT");
-            entity.Property(e => e.Marka)
+            entity.Property(e => e.MARKA)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("MARKA");
-            entity.Property(e => e.Stok).HasColumnName("STOK");
-            entity.Property(e => e.Urunad)
+            entity.Property(e => e.STOK).HasColumnName("STOK");
+            entity.Property(e => e.URUNAD)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("URUNAD");
-            entity.Property(e => e.Urunkategori).HasColumnName("URUNKATEGORI");
+            entity.Property(e => e.URUNKATEGORI).HasColumnName("URUNKATEGORI");
 
             entity.HasOne(d => d.UrunkategoriNavigation).WithMany(p => p.Tblurunlers)
-                .HasForeignKey(d => d.Urunkategori)
+                .HasForeignKey(d => d.URUNKATEGORI)
                 .HasConstraintName("FK_TBL_URUNLER_TBLKATEGORILER");
         });
 

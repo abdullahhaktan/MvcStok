@@ -25,9 +25,14 @@ namespace MvcStok.Controllers
         }
 
         [HttpPost]
-        public IActionResult YeniMusteri(Tblmusteriler ktgr)
+        public IActionResult YeniMusteri(Tblmusteriler mstr)
         {
-            _mvcDbStokContext.Tblmusterilers.Add(ktgr);
+            if (!ModelState.IsValid)
+            {
+                return View(mstr); // Validation başarısızsa formu tekrar göster
+            }
+
+            _mvcDbStokContext.Tblmusterilers.Add(mstr);
             _mvcDbStokContext.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -50,16 +55,16 @@ namespace MvcStok.Controllers
         [HttpPost]
         public IActionResult MusteriGuncelle(Tblmusteriler mstr)
         {
-            var cstmr = _mvcDbStokContext.Tblmusterilers.Find(mstr.Musteriid);
+            if (!ModelState.IsValid)
+            {
+                return View(mstr); // Validation başarısızsa formu tekrar göster
+            }
 
-            cstmr.Musteriad = mstr.Musteriad;
-
-            cstmr.Musterisoyad = mstr.Musterisoyad;
-
+            var cstmr = _mvcDbStokContext.Tblmusterilers.Find(mstr.MUSTERIID);
+            cstmr.MUSTERIAD = mstr.MUSTERIAD;
+            cstmr.MUSTERISOYAD = mstr.MUSTERISOYAD;
             _mvcDbStokContext.Tblmusterilers.Update(cstmr);
-
             _mvcDbStokContext.SaveChanges();
-
             return RedirectToAction("Index");
         }
 

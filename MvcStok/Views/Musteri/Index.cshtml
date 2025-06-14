@@ -20,13 +20,13 @@
         @foreach (var cstmr in Model)
         {
             <tr>
-                <th>@cstmr.Musteriid</th>
-                <td>@cstmr.Musteriad @cstmr.Musterisoyad</td>
+                <th>@cstmr.MUSTERIID</th>
+                <td>@cstmr.MUSTERIAD @cstmr.MUSTERISOYAD</td>
                 <td>
-                    <a href="/Musteri/MusteriSil/@cstmr.Musteriid" class="btn btn-danger btn-sm">Sil</a>
+                    <a href="/Musteri/MusteriSil/@cstmr.MUSTERIID" class="btn btn-danger btn-sm">Sil</a>
                 </td>
                 <td>
-                    <a href="/Musteri/MusteriGuncelle/@cstmr.Musteriid" class="btn btn-primary btn-sm">Güncelle</a>
+                    <a href="/Musteri/MusteriGuncelle/@cstmr.MUSTERIID" class="btn btn-primary btn-sm">Güncelle</a>
                 </td>
             </tr>
         }

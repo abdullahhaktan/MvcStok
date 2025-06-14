@@ -1,5 +1,4 @@
-﻿@using MvcStok.Models.Entity
-@model Tblkategoriler
+﻿@model MvcStok.Models.Entity.Tblkategoriler
 
 @{
     ViewData["Title"] = "KategoriGuncelle";
@@ -11,18 +10,22 @@
 <div class="container mt-5">
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Kategori güncelle</h5>
+            <h5 class="mb-0">Kategori Güncelle</h5>
         </div>
         <div class="card-body">
-            <form action="/Kategori/KategoriGuncelle" method="post">
+            @using (Html.BeginForm("KategoriGuncelle", "Kategori", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.KATEGORIID)
+
                 <div class="mb-3">
-                    <label for="kategoriAd" class="form-label">Kategori</label>
-                    <input type="hidden" name="kategotriid" value="@Model.Kategotriid" />
-                    <input type="text" class="form-control" id="kategoriAd" name="KATEGORIAD" placeholder="kategori girin" value="@Model.Kategoriad">
+                    @Html.LabelFor(model => model.KATEGORIAD, htmlAttributes: new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.KATEGORIAD, new { @class = "form-control", placeholder = "Kategori adı girin" })
+                    @Html.ValidationMessageFor(model => model.KATEGORIAD, "", new { @class = "text-danger" })
                 </div>
+
                 <button type="submit" class="btn btn-dark btn-sm">Kaydet</button>
-            </form>
+            }
         </div>
-        
     </div>
 </div>

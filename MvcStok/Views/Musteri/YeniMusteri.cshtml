@@ -1,4 +1,6 @@
-﻿@{
+﻿@model MvcStok.Models.Entity.Tblmusteriler
+
+@{
     ViewData["Title"] = "YeniMusteri";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
@@ -11,18 +13,22 @@
             <h5 class="mb-0">Müşteri Ekleme</h5>
         </div>
         <div class="card-body">
-            <form action="/Musteri/YeniMusteri" method="post">
+            @using (Html.BeginForm("YeniMusteri", "Musteri", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
                 <div class="mb-3">
+                    @Html.LabelFor(model => model.MUSTERIAD, new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.MUSTERIAD, new { @class = "form-control", placeholder = "Müşteri adı girin" })
+                    @Html.ValidationMessageFor(model => model.MUSTERIAD, "", new { @class = "text-danger" })
 
-                    <label for="musteriAd" class="form-label">Müşteri Ad</label>
-                    <input type="text" class="form-control" id="musteriAd" name="MUSTERIAD" placeholder="Müşteri Ad">
-
-                    <label for="musteriSoyad" class="form-label">Müşteri Soyad</label>
-                    <input type="text" class="form-control" id="musteriSoyad" name="MUSTERISOYAD" placeholder="Müşteri Soyad">
-
+                    @Html.LabelFor(model => model.MUSTERISOYAD, new { @class = "form-label mt-3" })
+                    @Html.TextBoxFor(model => model.MUSTERISOYAD, new { @class = "form-control", placeholder = "Müşteri soyadı girin" })
+                    @Html.ValidationMessageFor(model => model.MUSTERISOYAD, "", new { @class = "text-danger" })
                 </div>
+
                 <button type="submit" class="btn btn-dark btn-sm">Kaydet</button>
-            </form>
+            }
         </div>
     </div>
 </div>

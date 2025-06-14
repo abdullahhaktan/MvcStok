@@ -1,10 +1,11 @@
-﻿@using MvcStok.Models.Entity
-@model List<Tblurunler>
+﻿@model MvcStok.Models.Entity.Tblurunler
 
 @{
     ViewData["Title"] = "YeniÜrün";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+
+<h1>Yeni Ürün Ekle</h1>
 
 <div class="container mt-5">
     <div class="card shadow-sm">
@@ -12,31 +13,47 @@
             <h5 class="mb-0">Yeni Ürün</h5>
         </div>
         <div class="card-body">
-            <form action="/Urun/YeniUrun" method="post">
+            @using (Html.BeginForm("YeniUrun", "Urun", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
                 <div class="mb-3">
-                    <label for="urunAd" class="form-label">Ürün Adı</label>
-                    <input type="text" class="form-control" id="urunAd" name="URUNAD" placeholder="Ürün adını girin">
+                    @Html.LabelFor(model => model.URUNAD, new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.URUNAD, new { @class = "form-control", placeholder = "Ürün adı girin" })
+                    @Html.ValidationMessageFor(model => model.URUNAD, "", new { @class = "text-danger" })
                 </div>
+
                 <div class="mb-3">
-                    <label for="marka" class="form-label">Marka</label>
-                    <input type="text" class="form-control" id="marka" name="MARKA" placeholder="Markayı girin">
+                    @Html.LabelFor(model => model.MARKA, new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.MARKA, new { @class = "form-control", placeholder = "Marka girin" })
+                    @Html.ValidationMessageFor(model => model.MARKA, "", new { @class = "text-danger" })
                 </div>
+
                 <div class="mb-3">
-                    <label for="kategori" class="form-label">Kategori</label>
-                    <input type="text" class="form-control" id="kategori" name="URUNKATEGORI" placeholder="Kategori girin">
+                    @Html.LabelFor(model => model.URUNKATEGORI, new { @class = "form-label" })
+                    @Html.DropDownListFor(model => model.URUNKATEGORI,
+                             ViewBag.v1 as List<SelectListItem>,
+                             "Kategori Seçiniz",
+                             new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.URUNKATEGORI, "", new { @class = "text-danger" })
                 </div>
+
                 <div class="mb-3">
-                    <label for="stok" class="form-label">Fiyat</label>
-                    <input type="text" class="form-control" id="fiyat" name="FİYAT" placeholder="fiyat girin">
+                    @Html.LabelFor(model => model.FIYAT, new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.FIYAT, new { @class = "form-control", placeholder = "Fiyat girin" })
+                    @Html.ValidationMessageFor(model => model.FIYAT, "", new { @class = "text-danger" })
                 </div>
+
                 <div class="mb-3">
-                    <label for="stok" class="form-label">Stok</label>
-                    <input type="text" class="form-control" id="stok" name="STOK" placeholder="Stok girin">
+                    @Html.LabelFor(model => model.STOK, new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.STOK, new { @class = "form-control", placeholder = "Stok girin" })
+                    @Html.ValidationMessageFor(model => model.STOK, "", new { @class = "text-danger" })
                 </div>
+
                 <div class="text-end">
                     <button type="submit" class="btn btn-success">Kaydet</button>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>
