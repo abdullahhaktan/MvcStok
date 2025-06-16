@@ -1,0 +1,57 @@
+﻿@model MvcStok.Models.Entity.Tblsatislar
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+    Satış Yap
+</button>
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Satış Yapma Ekranı</h2>
+            </div>
+            <form action="/Satis/YeniSatis" method="post">
+                <div class="modal-body">
+                    <label>
+                        Ürün Adı
+                    </label>
+                    @Html.LabelFor(model => model.URUN, new { @class = "form-label" })
+                    @Html.DropDownListFor(model => model.URUN,
+                             (IEnumerable<SelectListItem>)ViewBag.v2,
+                             "Ürün Seçiniz",
+                             new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.URUN, "", new { @class = "text-danger" })                          <br />
+                    <label>
+                        Müşteri Adı Soyadı
+                    </label>
+                    @Html.LabelFor(model => model.MUSTERI, new { @class = "form-label" })
+                    @Html.DropDownListFor(model => model.MUSTERI,
+                             (IEnumerable<SelectListItem>)ViewBag.v1,
+                             "Kategori Seçiniz",
+                             new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MUSTERI, "", new { @class = "text-danger" })                    
+                    <br />
+                    <label>
+                        Fiyat
+                    </label>
+                    @Html.TextBoxFor(m=>m.FIYAT,new {@class="form-control" })
+                    <label>
+                        Ürün Adet
+                    </label>
+                    @Html.TextBoxFor(m => m.ADET, new { @class = "form-control" })
+                    <br />
+
+                    <button type="submit" class="btn btn-info">Satış İşlemini Yap</button>
+
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Vazgeç</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

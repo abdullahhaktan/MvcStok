@@ -22,7 +22,7 @@ namespace MvcStok.Models.Entity
         [Range(0.01, double.MaxValue, ErrorMessage = "Fiyat 0'dan büyük olmalıdır.")]
         public decimal? FIYAT { get; set; }
 
-        [Range(0, byte.MaxValue, ErrorMessage = "Stok negatif olamaz.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Stok negatif olamaz.")]
         public byte? STOK { get; set; }
 
         public bool URUNDURUM { get; set; }

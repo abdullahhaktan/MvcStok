@@ -1,11 +1,31 @@
-﻿@using MvcStok.Models.Entity
-@model List<Tblkategoriler>
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@model IPagedList<MvcStok.Models.Entity.Tblkategoriler>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
+<!-- Gerekli CSS ve JS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!-- Arama Kutusu - Sağ Üste Alındı -->
+<div class="d-flex justify-content-end mb-3">
+    <form asp-action="Index" method="get" class="form-inline">
+        <input type="text" name="arama" class="form-control mr-2" placeholder="Kategori adıyla ara..." value="@Context.Request.Query["arama"]" />
+        <button type="submit" class="btn btn-outline-primary">
+            <i class="fas fa-search"></i> Ara
+        </button>
+    </form>
+</div>
+
+<!-- Kategori Tablosu -->
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -15,7 +35,6 @@
             <th>Güncelle</th>
         </tr>
     </thead>
-
     <tbody>
         @foreach (var ktgr in Model)
         {
@@ -23,7 +42,7 @@
                 <th>@ktgr.KATEGORIID</th>
                 <td>@ktgr.KATEGORIAD</td>
                 <td>
-                    <a href="/Kategori/KategoriSil/@ktgr.KATEGORIID" class="btn btn-danger btn-sm">Sil</a>
+                    <a href="#" class="btn btn-danger btn-sm btn-sil" data-id="@ktgr.KATEGORIID">Sil</a>
                 </td>
                 <td>
                     <a href="/Kategori/KategoriGuncelle/@ktgr.KATEGORIID" class="btn btn-primary btn-sm">Güncelle</a>
@@ -32,9 +51,63 @@
         }
     </tbody>
 </table>
-<br />
 
+<!-- Yeni Kategori Butonu -->
 <a href="/Kategori/YeniKategori" class="btn btn-dark btn-sm">Yeni Kategori Girişi</a>
 
 <br />
 <br />
+
+<!-- Sayfalama -->
+<div class="text-center">
+    @Html.PagedListPager(
+            Model,
+            page => Url.Action("Index", new { sayfa = page }),
+            new PagedListRenderOptions
+    {
+        UlElementClasses = new[] { "pagination" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" },
+        DisplayLinkToFirstPage = X.PagedList.Mvc.Core.PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = X.PagedList.Mvc.Core.PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = X.PagedList.Mvc.Core.PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = X.PagedList.Mvc.Core.PagedListDisplayMode.Always,
+        MaximumPageNumbersToDisplay = 5
+    }
+            )
+</div>
+
+<!-- Kategori Silme ve Başarı Mesajı Scriptleri -->
+<script>
+    $(document).ready(function () {
+        // Silme işlemi
+        $(".btn-sil").click(function (e) {
+            e.preventDefault();
+            var id = $(this).data("id");
+            swal({
+                title: "Emin misiniz?",
+                text: "Bu kategori silindikten sonra geri alamayacaksınız!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = "/Kategori/KategoriSil/" + id;
+                } else {
+                    swal("Kategori silinmedi...");
+                }
+            });
+        });
+
+        // TempData başarı mesajı gösterimi
+        var successMessage = '@(TempData["SuccessMessage"] ?? "")';
+        if (successMessage) {
+            swal({
+                title: "İşlem başarılı!",
+                text: successMessage,
+                icon: "success",
+                button: "Tamam",
+            });
+        }
+    });
+</script>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MvcStok.Models.Entity;
+using X.PagedList.Extensions;
 
 namespace MvcStok.Controllers
 {
@@ -12,10 +13,23 @@ namespace MvcStok.Controllers
             _mvcDbStokContext = mvcDbStokContext;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string arama, int sayfa = 1)
         {
-            var musteris = _mvcDbStokContext.Tblmusterilers.ToList();
-            return View(musteris);
+            if (!string.IsNullOrEmpty(arama))
+            {
+                var degerler = _mvcDbStokContext.Tblmusterilers
+                .Where(m => m.MUSTERIAD.Contains(arama) || m.MUSTERISOYAD.Contains(arama)) // Filtreleme
+                .OrderBy(m => m.MUSTERIID) // Sıralama
+                .ToPagedList(sayfa, 5); // Sayfalama
+
+                return View(degerler);
+            }
+            else
+            {
+               var degerler = _mvcDbStokContext.Tblmusterilers.OrderBy(m => m.MUSTERIID).ToPagedList(sayfa, 5);
+                return View(degerler);
+            }
+
         }
 
         [HttpGet]
@@ -34,6 +48,9 @@ namespace MvcStok.Controllers
 
             _mvcDbStokContext.Tblmusterilers.Add(mstr);
             _mvcDbStokContext.SaveChanges();
+
+            TempData["SuccessMessage"] = "Kategori Basariyla eklendi";
+
             return RedirectToAction("Index");
         }
 
@@ -65,6 +82,9 @@ namespace MvcStok.Controllers
             cstmr.MUSTERISOYAD = mstr.MUSTERISOYAD;
             _mvcDbStokContext.Tblmusterilers.Update(cstmr);
             _mvcDbStokContext.SaveChanges();
+
+            TempData["SuccessMessage"] = "Kategori Basariyla Guncellendi";
+
             return RedirectToAction("Index");
         }
 

@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+    Bilgi Al
+</button>
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Bilgi Ekranı</h2>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="@Url.Content("~/images/abdullah.jpg")" alt="Abdullah Haktan" class="img-fluid rounded-circle mb-3" style="max-width: 150px;" />
+                <h4>Abdullah Haktan</h4>
+                <p>Atatürk Üniversitesi Bilgisayar Mühendisliği Mezunu</p>
+                <p>Yazılım Geliştirici - Backend / .NET Developer</p>
+                <p><strong>Email:</strong> abdullahhaktan9@gmail.com</p>
+                <p><strong>Telefon:</strong> 0531 494 5538</p>
+            </div>
+        </div>
+    </div>
+</div>

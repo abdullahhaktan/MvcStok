@@ -14,6 +14,10 @@ namespace MvcStok.Models.Entity
         [Required(ErrorMessage = "Müşteri seçimi zorunludur.")]
         public int? MUSTERI { get; set; }
 
+        //[Required(ErrorMessage = "Marka adı boş olamaz.")]
+        //[StringLength(50, MinimumLength = 3, ErrorMessage = "Kategori adı 3 ile 50 karakter arasında olmalıdır.")]
+        //public string MARKA { get; set; }
+
         [Required(ErrorMessage = "Adet bilgisi zorunludur.")]
         [Range(1, byte.MaxValue, ErrorMessage = "Adet 1 veya daha fazla olmalıdır.")]
         public byte? ADET { get; set; }
@@ -21,6 +25,8 @@ namespace MvcStok.Models.Entity
         [Required(ErrorMessage = "Fiyat bilgisi zorunludur.")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Fiyat 0'dan büyük olmalıdır.")]
         public decimal? FIYAT { get; set; }
+
+
 
         public virtual Tblmusteriler? MusteriNavigation { get; set; }
 

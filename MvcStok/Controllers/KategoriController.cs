@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MvcStok.Models.Entity;
+using X.PagedList;
+using X.PagedList.Extensions;
 
 namespace MvcStok.Controllers
 {
@@ -12,11 +14,24 @@ namespace MvcStok.Controllers
             _mvcDbStokContext = mvcDbStokContext;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string arama, int sayfa = 1)
         {
-            var degerler = _mvcDbStokContext.Tblkategorilers.Where(ktgr=>ktgr.KATEGORIDURUM==true).ToList();
-            return View(degerler);
+            var kategoriler = _mvcDbStokContext.Tblkategorilers
+                .Where(k => k.KATEGORIDURUM == true);
+
+            if (!string.IsNullOrEmpty(arama))
+            {
+                kategoriler = kategoriler.Where(k => k.KATEGORIAD.Contains(arama));
+            }
+
+            var model = kategoriler
+                .OrderBy(k => k.KATEGORIID)
+                .ToPagedList(sayfa, 5);
+
+            return View(model);
         }
+
+
 
         [HttpGet]
         public IActionResult YeniKategori()
@@ -35,6 +50,10 @@ namespace MvcStok.Controllers
             ktgr.KATEGORIDURUM = true;
             _mvcDbStokContext.Tblkategorilers.Add(ktgr);
             _mvcDbStokContext.SaveChanges();
+
+            TempData["SuccessMessage"] = "Kategori Basariyla eklendi";
+
+
             return RedirectToAction("Index");
         }
 
@@ -70,6 +89,8 @@ namespace MvcStok.Controllers
             _mvcDbStokContext.Tblkategorilers.Update(ctgr);
 
             _mvcDbStokContext.SaveChanges();
+
+            TempData["SuccessMessage"] = "Kategori Basariyla Guncellendi";
 
             return RedirectToAction("Index");
         }
