@@ -1,5 +1,11 @@
 # MvcStok
 
+[![C#](https://img.shields.io/badge/Language-C%23-blue.svg)](https://docs.microsoft.com/en-us/dotnet/csharp/)
+[![Design Pattern](https://img.shields.io/badge/Architecture-N--Tier%2FLayered-orange.svg)]()
+[![GitHub repo size](https://img.shields.io/github/repo-size/abdullahhaktan/MvcStok)](https://github.com/abdullahhaktan/MvcStok)
+[![GitHub Yıldızları](https://img.shields.io/github/stars/abdullahhaktan/MvcStok.svg?style=social)](https://github.com/abdullahhaktan/MvcStok/stargazers)
+[![Lisans](https://img.shields.io/badge/Lisans-MIT-blue.svg)](LICENSE)
+
 [TR]
 
 **Stok Takip ve Envanter Yönetim Sistemi (ASP.NET MVC)**
@@ -8,7 +14,7 @@
 
 ## 💻 Proje Hakkında
 
-Bu proje, temel **stok takibi ve envanter yönetimi** ihtiyaçlarını karşılamak üzere **ASP.NET MVC** kullanılarak geliştirilmiştir. Ürünlerin, kategorilerin ve tedarikçilerin sisteme kaydını, takibini ve yönetimini sağlayarak işletmelerin stok süreçlerini düzenlemeyi amaçlar. Proje, özellikle MVC mimarisini uygulamalı olarak öğrenmek için iyi bir örnek teşkil eder.
+Bu proje, temel **stok takibi ve envanter yönetimi** ihtiyaçlarını karşılamak üzere geleneksel **ASP.NET MVC (.NET Framework)** kullanılarak geliştirilmiştir. Ürünlerin, kategorilerin ve tedarikçilerin sisteme kaydını, takibini ve yönetimini sağlar. Proje, **Database First** yaklaşımını kullanır ve veritabanı şemasını manuel kurulum gerektirir.
 
 ---
 
@@ -16,20 +22,18 @@ Bu proje, temel **stok takibi ve envanter yönetimi** ihtiyaçlarını karşıla
 
 ### Teknik Özellikler
 
-* **ASP.NET MVC (Model-View-Controller)**: Geleneksel MVC mimarisi kullanılmıştır.
-* **Entity Framework (Code First/Database First)**: Veritabanı ile etkileşim (Hangi yaklaşım kullanılıyorsa belirtilebilir).
+* **ASP.NET MVC (.NET Framework)**: Geleneksel Model-View-Controller mimarisi.
+* **Database First Yaklaşımı**: Modeller, önceden var olan veritabanı şemasından oluşturulmuştur.
+* **Entity Framework (EF)**: Veritabanı ile etkileşim (Migrations kullanılmamaktadır).
+* **CRUD Operasyonları**: Ürün, Kategori ve diğer temel varlıklar üzerinde oluşturma, okuma, güncelleme ve silme işlemleri.
 * **Veri Doğrulama**: Model bazlı doğrulama (Validation) kullanımı.
-* **CRUD Operasyonları**: Ürün, Kategori ve Müşteri/Tedarikçi gibi temel varlıklar üzerinde oluşturma, okuma, güncelleme ve silme işlemleri.
-* **Arama ve Filtreleme**: Stok listelerinde arama ve filtreleme özellikleri.
-* **ViewBag/ViewData Kullanımı**: Controller'dan View'e veri taşıma yöntemleri.
 
 ### Kullanıcı / Panel Özellikleri
 
-* **Ürün Yönetimi**: Stoktaki ürünlerin detaylı kaydı, durumu ve takibi.
-* **Kategori Yönetimi**: Ürünleri gruplamak için kategori tanımlama ve düzenleme.
-* **Müşteri/Tedarikçi Yönetimi**: İşletmenin çalıştığı kişi/kurumların kaydı ve takibi.
-* **Basit Raporlama**: Stok durumu, kritik stok seviyeleri gibi basit listelerin görüntülenmesi.
-* **Kullanıcı Girişi**: Yöneticilerin sisteme güvenli bir şekilde erişimi.
+* **Ürün Yönetimi**: Stoktaki ürünlerin detaylı kaydı ve takibi.
+* **Kategori Yönetimi**: Ürünleri gruplamak için kategori tanımlama.
+* **Müşteri/Tedarikçi Yönetimi**: İşletmenin çalıştığı kişi/kurumların kaydı.
+* **Arama ve Filtreleme**: Stok listelerinde arama ve filtreleme özellikleri.
 
 ---
 
@@ -38,9 +42,9 @@ Bu proje, temel **stok takibi ve envanter yönetimi** ihtiyaçlarını karşıla
 Bu projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izleyin:
 
 1.  **Gereksinimler:**
-    * [.NET Framework (4.x veya üzeri)](https://dotnet.microsoft.com/download/dotnet-framework)
-    * [SQL Server](https://www.microsoft.com/en-us/sql-server) (veya SQL Server Express)
-    * [Visual Studio 2019/2022](https://visualstudio.microsoft.com/) (Önerilen)
+    * **[.NET Framework (4.x veya üzeri)](https://dotnet.microsoft.com/download/dotnet-framework)**
+    * **[SQL Server](https://www.microsoft.com/en-us/sql-server)** (veya SQL Server Express)
+    * **[Visual Studio 2019/2022](https://visualstudio.microsoft.com/)** (Önerilen)
 
 2.  **Projeyi Klonlama:**
     ```bash
@@ -49,18 +53,22 @@ Bu projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izl
     ```
 
 3.  **Bağımlılıkları Yükleme:**
-    * Visual Studio'yu açın.
-    * Çözüm Gezgini'nde projenin üzerine sağ tıklayıp **"Manage NuGet Packages..."** (NuGet Paketlerini Yönet) seçeneğini açın.
-    * Gerekli tüm paketlerin (örneğin Entity Framework) indirildiğinden emin olmak için **"Restore"** (Geri Yükle) düğmesine tıklayın.
+    * Visual Studio'da projeyi açın.
+    * Çözüm Gezgini'nde projeye sağ tıklayıp **"Manage NuGet Packages..."** (NuGet Paketlerini Yönet) seçeneğini açın ve tüm paketlerin **Restore** edildiğinden emin olun.
 
 4.  **Veritabanı Ayarları:**
-    * Projenin `Web.config` dosyasını açın.
-    * `connectionStrings` bölümündeki veritabanı bağlantı dizesini (`DefaultConnection` veya benzeri) kendi yerel SQL Server ayarlarınıza göre güncelleyin.
-    * *(Not: Veritabanının manuel olarak oluşturulması veya EF Migrations kullanılması gerekebilir. Geleneksel MVC projelerinde genellikle Database First yaklaşımı yaygındır.)*
+    * Projenin **`Web.config`** dosyasını açın.
+    * **`connectionStrings`** bölümündeki bağlantı dizesini kendi yerel SQL Server ayarlarınıza göre güncelleyin.
+    * *(Not: Bu dizedeki veritabanı adı, manuel olarak oluşturacağınız veritabanı adıyla eşleşmelidir.)*
 
-5.  **Projeyi Çalıştırma:**
+5.  **Veritabanını Oluşturma (ZORUNLU MANUEL ADIM):**
+    * Migrations kullanılmadığı için veritabanını manuel olarak oluşturmanız gerekmektedir.
+    * Projenin kök dizininde veya bir alt klasörde bulunan **SQL script dosyasını** (`.sql` uzantılı) bulun.
+    * SQL Server Management Studio (SSMS) gibi bir araç kullanarak bu scripti çalıştırın ve **veritabanı şemasını oluşturun**.
+
+6.  **Projeyi Çalıştırma:**
     * Projeyi Visual Studio'da çalıştırın (F5 veya `Start` butonu).
-    * Uygulama genellikle tarayıcınızda açılacaktır. İlk erişim için **`/GirisYap/Index`** gibi bir giriş sayfası yolu kullanılması gerekebilir.
+    * Uygulama genellikle tarayıcınızda açılacaktır. İlk erişim için bir giriş sayfası yolu kullanılması gerekebilir.
 
 ---
 ---
@@ -71,7 +79,7 @@ Bu projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izl
 
 ## 💻 About the Project
 
-This project is an **inventory tracking and stock management system** developed using **ASP.NET MVC**. Its purpose is to register, track, and manage products, categories, and suppliers, helping businesses organize their inventory processes. The project serves as a practical example for learning the MVC architecture.
+This project is an **inventory tracking and stock management system** developed using traditional **ASP.NET MVC (.NET Framework)**. It handles the registration, tracking, and management of products, categories, and suppliers. The project uses the **Database First** approach and requires manual setup of the database schema.
 
 ---
 
@@ -79,20 +87,18 @@ This project is an **inventory tracking and stock management system** developed 
 
 ### Technical Features
 
-* **ASP.NET MVC (Model-View-Controller)**: Utilizes the traditional MVC architectural pattern.
-* **Entity Framework (Code First/Database First)**: Interaction with the database (Specify the approach used if known).
+* **ASP.NET MVC (.NET Framework)**: Traditional Model-View-Controller architecture.
+* **Database First Approach**: Models are scaffolded from an existing database schema.
+* **Entity Framework (EF)**: Interaction with the database (Migrations are not used).
+* **CRUD Operations**: Create, Read, Update, and Delete operations for products, categories, and other core entities.
 * **Data Validation**: Use of model-based validation.
-* **CRUD Operations**: Create, Read, Update, and Delete operations for core entities like Products, Categories, and Customers/Suppliers.
-* **Search and Filtering**: Functionality for searching and filtering stock lists.
-* **ViewBag/ViewData Usage**: Methods for transferring data from the Controller to the View.
 
 ### User / UI Features
 
-* **Product Management**: Detailed registration, status, and tracking of products in stock.
-* **Category Management**: Defining and managing categories to group products.
+* **Product Management**: Detailed registration and tracking of products in stock.
+* **Category Management**: Defining categories to group products.
 * **Customer/Supplier Management**: Tracking entities the business works with.
-* **Basic Reporting**: Viewing simple lists such as stock status and critical stock levels.
-* **User Login**: Secure access to the system for administrators.
+* **Search and Filtering**: Functionality for searching and filtering stock lists.
 
 ---
 
@@ -101,9 +107,9 @@ This project is an **inventory tracking and stock management system** developed 
 Follow these steps to set up and run the project locally:
 
 1.  **Prerequisites:**
-    * [.NET Framework (4.x or higher)](https://dotnet.microsoft.com/download/dotnet-framework)
-    * [SQL Server](https://www.microsoft.com/en-us/sql-server) (or SQL Server Express)
-    * [Visual Studio 2019/2022](https://visualstudio.microsoft.com/) (Recommended)
+    * **[.NET Framework (4.x or higher)](https://dotnet.microsoft.com/download/dotnet-framework)**
+    * **[SQL Server](https://www.microsoft.com/en-us/sql-server)** (or SQL Server Express)
+    * **[Visual Studio 2019/2022](https://visualstudio.microsoft.com/)** (Recommended)
 
 2.  **Cloning the Project:**
     ```bash
@@ -113,14 +119,18 @@ Follow these steps to set up and run the project locally:
 
 3.  **Installing Dependencies:**
     * Open the project in Visual Studio.
-    * Right-click the project in Solution Explorer and open **"Manage NuGet Packages..."**.
-    * Click the **"Restore"** button to ensure all necessary packages (e.g., Entity Framework) are downloaded.
+    * Right-click the project in Solution Explorer, open **"Manage NuGet Packages..."**, and ensure all packages are **Restored**.
 
 4.  **Database Configuration:**
-    * Open the project's `Web.config` file.
-    * Update the database connection string (`DefaultConnection` or similar) in the `connectionStrings` section to match your local SQL Server settings.
-    * *(Note: The database may need to be created manually or by using EF Migrations. The Database First approach is often common in traditional MVC projects.)*
+    * Open the project's **`Web.config`** file.
+    * Update the connection string in the **`connectionStrings`** section to match your local SQL Server settings.
+    * *(Note: The database name in this string must match the name of the database you create manually.)*
 
-5.  **Running the Project:**
+5.  **Creating the Database (REQUIRED MANUAL STEP):**
+    * Since Migrations are not used, you must create the database manually.
+    * Locate the **SQL script file** (`.sql` extension) within the project's root or a subfolder.
+    * Use a tool like SQL Server Management Studio (SSMS) to run this script and **create the database schema**.
+
+6.  **Running the Project:**
     * Run the project in Visual Studio (F5 or the `Start` button).
-    * The application will typically open in your browser. Initial access may require navigating to a login page such as **`/GirisYap/Index`**.
+    * The application will typically open in your browser. Access may require navigating to a login page.
