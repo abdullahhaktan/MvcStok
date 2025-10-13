@@ -63,8 +63,6 @@ Bu projeyi yerel ortamınızda çalıştırmak için aşağıdaki adımları izl
 
 5.  **Veritabanını Oluşturma (ZORUNLU MANUEL ADIM):**
     * Migrations kullanılmadığı için veritabanını manuel olarak oluşturmanız gerekmektedir.
-    * Projenin kök dizininde veya bir alt klasörde bulunan **SQL script dosyasını** (`.sql` uzantılı) bulun.
-    * SQL Server Management Studio (SSMS) gibi bir araç kullanarak bu scripti çalıştırın ve **veritabanı şemasını oluşturun**.
 
 6.  **Projeyi Çalıştırma:**
     * Projeyi Visual Studio'da çalıştırın (F5 veya `Start` butonu).
